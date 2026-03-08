@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishtha Intel 🌷</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e91e8c;
+      --primary-dark: #c2185b;
+      --secondary: #ff6eb4;
+      --accent: #ff9800;
+      --bg: #0d0d0d;
+      --surface: #1a1a2e;
+      --surface2: #16213e;
+      --surface3: #0f3460;
+      --card: #1e1e2e;
+      --card2: #252540;
+      --text: #f0f0f0;
+      --text-muted: #9e9e9e;
+      --tulip: #ff6b9d;
+      --tulip2: #ff4081;
+      --green: #00e676;
+      --red: #ff5252;
+      --border: rgba(233,30,140,0.25);
+      --glow: 0 0 20px rgba(233,30,140,0.4);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated BG */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(233,30,140,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(255,110,180,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(15,52,96,0.3) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating tulips */
+    .floating-tulips {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .tulip-particle {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0;
+      animation: floatUp 8s linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* STATUS BAR (Android feel) */
+    .status-bar {
+      background: rgba(13,13,13,0.95);
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+    .status-time { font-family: 'Nunito', sans-serif; font-weight: 800; }
+    .status-icons { display: flex; gap: 8px; align-items: center; }
+    .status-icons i { font-size: 13px; }
+
+    /* HEADER */
+    .app-header {
+      position: sticky;
+      top: 41px;
+      z-index: 999;
+      background: rgba(26,26,46,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .app-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: var(--glow);
+      flex-shrink: 0;
+      animation: pulse-icon 2s ease-in-out infinite;
+    }
+    @keyframes pulse-icon {
+      0%, 100% { box-shadow: 0 0 15px rgba(233,30,140,0.4); }
+      50% { box-shadow: 0 0 30px rgba(233,30,140,0.7); }
+    }
+    .header-text h1 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .header-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .header-badge {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--primary), var(--tulip2));
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      animation: shimmer 2s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      position: relative;
+      z-index: 1;
+      padding: 20px 16px 100px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* BANNER */
+    .banner {
+      background: linear-gradient(135deg, rgba(233,30,140,0.15), rgba(255,110,180,0.1));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(233,30,140,0.15), transparent 70%);
+      border-radius: 50%;
+    }
+    .banner-icon { font-size: 36px; flex-shrink: 0; }
+    .banner h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      background: linear-gradient(to right, #fff, var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .banner p { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      background: var(--card);
+      padding: 6px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 10px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(233,30,140,0.4);
+    }
+    .tab-btn i { font-size: 15px; }
+
+    /* CARD */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .card-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .card-icon.pink { background: linear-gradient(135deg, rgba(233,30,140,0.2), rgba(255,110,180,0.2)); color: var(--primary); }
+    .card-icon.blue { background: linear-gradient(135deg, rgba(33,150,243,0.2), rgba(0,188,212,0.2)); color: #29b6f6; }
+    .card-title { font-weight: 700; font-size: 15px; }
+    .card-subtitle { font-size: 11px; color: var(--text-muted); }
+
+    /* INPUT GROUP */
+    .input-group {
+      margin-bottom: 14px;
+    }
+    .input-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-prefix {
+      position: absolute;
+      left: 14px;
+      color: var(--primary);
+      font-size: 16px;
+      z-index: 1;
+    }
+    .input-field {
+      width: 100%;
+      background: var(--card2);
+      border: 1.5px solid rgba(233,30,140,0.2);
+      border-radius: var(--radius-sm);
+      padding: 14px 14px 14px 44px;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      outline: none;
+      transition: all 0.3s;
+    }
+    .input-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(233,30,140,0.15);
+      background: rgba(233,30,140,0.05);
+    }
+    .input-field::placeholder { color: rgba(255,255,255,0.2); font-weight: 400; letter-spacing: 0; }
+    .char-counter {
+      position: absolute;
+      right: 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* SEARCH BTN */
+    .search-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(233,30,140,0.35);
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+    .search-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -60%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+    .search-btn:hover::before { left: 100%; }
+    .search-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(233,30,140,0.5); }
+    .search-btn:active { transform: translateY(0); }
+    .search-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .btn-spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .search-btn.loading .btn-spinner { display: block; }
+    .search-btn.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* RESULT */
+    .result-card {
+      display: none;
+      background: var(--card);
+      border: 1px solid rgba(0,230,118,0.3);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 16px;
+      animation: slideUp 0.4s ease;
+    }
+    .result-card.show { display: block; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .result-header {
+      background: linear-gradient(135deg, rgba(0,230,118,0.15), rgba(0,200,100,0.08));
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(0,230,118,0.15);
+    }
+    .result-status {
+      width: 10px; height: 10px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      flex-shrink: 0;
+    }
+    .result-header-text { font-size: 13px; font-weight: 600; color: var(--green); }
+    .result-header-sub { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+
+    .result-body { padding: 18px; }
+
+    /* Profile section */
+    .profile-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .profile-avatar {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(233,30,140,0.3);
+    }
+    .profile-name { font-size: 17px; font-weight: 700; }
+    .profile-id { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    .info-grid { display: flex; flex-direction: column; gap: 10px; }
+
+    .info-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px;
+      background: var(--card2);
+      border-radius: var(--radius-sm);
+      transition: background 0.2s;
+    }
+    .info-row:hover { background: rgba(233,30,140,0.07); }
+    .info-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .info-icon.pink { background: rgba(233,30,140,0.15); color: var(--primary); }
+    .info-icon.blue { background: rgba(41,182,246,0.15); color: #29b6f6; }
+    .info-icon.green { background: rgba(0,230,118,0.15); color: var(--green); }
+    .info-icon.orange { background: rgba(255,152,0,0.15); color: #ffb74d; }
+    .info-icon.purple { background: rgba(171,71,188,0.15); color: #ce93d8; }
+    .info-icon.teal { background: rgba(0,188,212,0.15); color: #4dd0e1; }
+    .info-icon.red { background: rgba(255,82,82,0.15); color: #ff8a80; }
+
+    .info-content { flex: 1; min-width: 0; }
+    .info-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 3px; }
+    .info-value { font-size: 13px; font-weight: 600; word-break: break-all; line-height: 1.4; }
+    .info-value.mono { font-family: 'Nunito', monospace; letter-spacing: 1px; }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { color: var(--primary); }
+
+    /* ERROR */
+    .error-card {
+      display: none;
+      background: rgba(255,82,82,0.08);
+      border: 1px solid rgba(255,82,82,0.3);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 16px;
+      text-align: center;
+      animation: slideUp 0.3s ease;
+    }
+    .error-card.show { display: block; }
+    .error-icon { font-size: 28px; margin-bottom: 8px; }
+    .error-title { color: var(--red); font-weight: 700; font-size: 14px; }
+    .error-msg { color: var(--text-muted); font-size: 12px; margin-top: 4px; }
+
+    /* SECTION HEADER */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    /* TIPS CARD */
+    .tips-card {
+      background: rgba(255,152,0,0.06);
+      border: 1px solid rgba(255,152,0,0.2);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    .tips-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .tips-header i { color: #ffb74d; font-size: 14px; }
+    .tips-header span { font-size: 12px; font-weight: 700; color: #ffb74d; }
+    .tips-list { list-style: none; }
+    .tips-list li {
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 3px 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .tips-list li::before { content: '→'; color: #ffb74d; flex-shrink: 0; }
+
+    /* BOTTOM NAV */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(26,26,46,0.97);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      padding: 10px 20px 16px;
+      display: flex;
+      justify-content: space-around;
+      z-index: 1000;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 4px 12px;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .nav-item.active .nav-icon { color: var(--primary); }
+    .nav-item.active .nav-label { color: var(--primary); }
+    .nav-icon { font-size: 20px; color: var(--text-muted); transition: color 0.3s; }
+    .nav-label { font-size: 10px; color: var(--text-muted); font-weight: 600; transition: color 0.3s; }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 20px 0;
+    }
+
+    /* DEVELOPER SECTION */
+    .dev-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 80px;
+    }
+    .dev-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .dev-header h3 { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .dev-header p { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 2px; }
+    .dev-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--card2);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+    }
+    .dev-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .dev-info { flex: 1; }
+    .dev-name { font-size: 14px; font-weight: 700; }
+    .dev-role { font-size: 11px; color: var(--text-muted); }
+    .dev-tg {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,136,204,0.15);
+      border: 1px solid rgba(0,136,204,0.3);
+      color: #29b6f6;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .dev-tg:hover { background: rgba(0,136,204,0.25); transform: scale(1.02); }
+    .dev-tg i { font-size: 14px; }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0,230,118,0.9);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* HISTORY */
+    .history-section { margin-bottom: 16px; }
+    .history-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .history-chip {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .history-chip:hover { border-color: var(--primary); color: var(--primary); }
+    .history-chip i { font-size: 11px; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: rgba(255,152,0,0.05);
+      border: 1px solid rgba(255,152,0,0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .disclaimer strong { color: #ffb74d; }
+
+    /* Aadhar mask */
+    .aadhar-mask {
+      display: inline-block;
+      letter-spacing: 3px;
+      font-family: 'Nunito', monospace;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+    /* Selection page */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .stat-chip {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-value { font-size: 18px; font-weight: 800; font-family: 'Nunito', sans-serif; color: var(--primary); }
+    .stat-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating Tulips -->
+<div class="floating-tulips" id="tulipContainer"></div>
+
+<!-- Status Bar -->
+<div class="status-bar">
+  <span class="status-time" id="statusTime">12:00</span>
+  <div class="status-icons">
+    <i class="fas fa-signal"></i>
+    <i class="fas fa-wifi"></i>
+    <i class="fas fa-battery-three-quarters"></i>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="app-header">
+  <div class="header-inner">
+    <div class="app-icon">🌷</div>
+    <div class="header-text">
+      <h1>Nishtha Intel</h1>
+      <p>India's Smart Lookup Tool</p>
+    </div>
+    <div class="header-badge">🇮🇳 INDIA</div>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="banner-icon">🔍</div>
+    <div>
+      <h2>Smart Intelligence Lookup</h2>
+      <p>Phone & Aadhaar data lookup for India 🌷</p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-chip">
+      <div class="stat-value" id="searchCount">0</div>
+      <div class="stat-label">Searches</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-value" id="successCount">0</div>
+      <div class="stat-label">Found</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-value">2</div>
+      <div class="stat-label">Services</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('phone')" id="tab-phone">
+      <i class="fas fa-mobile-alt"></i> Phone Lookup
+    </button>
+    <button class="tab-btn" onclick="switchTab('aadhar')" id="tab-aadhar">
+      <i class="fas fa-id-card"></i> Aadhaar Lookup
+    </button>
+  </div>
+
+  <!-- PHONE PAGE -->
+  <div class="page active" id="page-phone">
+    <p class="section-label"><i class="fas fa-mobile-alt"></i> &nbsp;Mobile Number Lookup</p>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon pink"><i class="fas fa-phone"></i></div>
+        <div>
+          <div class="card-title">Phone Intelligence</div>
+          <div class="card-subtitle">Enter 10-digit Indian mobile number</div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-label"><i class="fas fa-hashtag"></i> Mobile Number</div>
+        <div class="input-wrapper">
+          <i class="fas fa-phone input-prefix"></i>
+          <input
+            type="tel"
+            class="input-field"
+            id="phoneInput"
+            placeholder="9876543210"
+            maxlength="10"
+            inputmode="numeric"
+            oninput="updateCounter(this,'phoneCounter',10)"
+            onkeypress="return isNumber(event)"
+            onkeydown="if(event.key==='Enter') searchPhone()"
+          />
+          <span class="char-counter" id="phoneCounter">0/10</span>
+        </div>
+      </div>
+
+      <button class="search-btn" id="phoneBtn" onclick="searchPhone()">
+        <div class="btn-spinner"></div>
+        <span class="btn-text"><i class="fas fa-search"></i> &nbsp;Search Now</span>
+      </button>
+    </div>
+
+    <!-- Recent Searches -->
+    <div class="history-section" id="phoneHistory" style="display:none">
+      <p class="section-label"><i class="fas fa-history"></i> &nbsp;Recent Searches</p>
+      <div class="history-chips" id="phoneChips"></div>
+    </div>
+
+    <!-- Phone Result -->
+    <div class="result-card" id="phoneResult">
+      <div class="result-header">
+        <div class="result-status"></div>
+        <div class="result-header-text">Record Found ✓</div>
+        <div class="result-header-sub" id="phoneResultTime"></div>
+      </div>
+      <div class="result-body">
+        <div class="profile-row">
+          <div class="profile-avatar">👤</div>
+          <div>
+            <div class="profile-name" id="pr-name">—</div>
+            <div class="profile-id" id="pr-mobile">—</div>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-row">
+            <div class="info-icon pink"><i class="fas fa-user"></i></div>
+            <div class="info-content">
+              <div class="info-label">Full Name</div>
+              <div class="info-value" id="r-name">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-name','Name')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon blue"><i class="fas fa-user-tie"></i></div>
+            <div class="info-content">
+              <div class="info-label">Father's Name</div>
+              <div class="info-value" id="r-father">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-father','Father Name')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon pink"><i class="fas fa-mobile-alt"></i></div>
+            <div class="info-content">
+              <div class="info-label">Primary Mobile</div>
+              <div class="info-value mono" id="r-mobile">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-mobile','Mobile')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon orange"><i class="fas fa-phone-alt"></i></div>
+            <div class="info-content">
+              <div class="info-label">Alternative Number</div>
+              <div class="info-value mono" id="r-alt">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-alt','Alt Number')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon green"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-content">
+              <div class="info-label">Address</div>
+              <div class="info-value" id="r-address">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-address','Address')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon purple"><i class="fas fa-satellite-dish"></i></div>
+            <div class="info-content">
+              <div class="info-label">Network Circle</div>
+              <div class="info-value" id="r-circle">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-circle','Circle')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon teal"><i class="fas fa-id-card"></i></div>
+            <div class="info-content">
+              <div class="info-label">Aadhaar Card Number</div>
+              <div class="info-value mono" id="r-aadhar">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-aadhar','Aadhaar')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon red"><i class="fas fa-envelope"></i></div>
+            <div class="info-content">
+              <div class="info-label">Email Address</div>
+              <div class="info-value" id="r-email">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('r-email','Email')"><i class="fas fa-copy"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div class="error-card" id="phoneError">
+      <div class="error-icon">❌</div>
+      <div class="error-title">No Record Found</div>
+      <div class="error-msg" id="phoneErrorMsg">No data found for this number. Try another number.</div>
+    </div>
+  </div>
+
+  <!-- AADHAR PAGE -->
+  <div class="page" id="page-aadhar">
+    <p class="section-label"><i class="fas fa-id-card"></i> &nbsp;Aadhaar Card Lookup</p>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon blue"><i class="fas fa-fingerprint"></i></div>
+        <div>
+          <div class="card-title">Aadhaar Intelligence</div>
+          <div class="card-subtitle">Enter 12-digit Aadhaar number</div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-label"><i class="fas fa-fingerprint"></i> Aadhaar Number</div>
+        <div class="input-wrapper">
+          <i class="fas fa-id-card input-prefix"></i>
+          <input
+            type="tel"
+            class="input-field"
+            id="aadharInput"
+            placeholder="XXXX XXXX XXXX"
+            maxlength="12"
+            inputmode="numeric"
+            oninput="updateCounter(this,'aadharCounter',12); formatAadhar(this)"
+            onkeypress="return isNumber(event)"
+            onkeydown="if(event.key==='Enter') searchAadhar()"
+          />
+          <span class="char-counter" id="aadharCounter">0/12</span>
+        </div>
+      </div>
+
+      <button class="search-btn" id="aadharBtn" onclick="searchAadhar()">
+        <div class="btn-spinner"></div>
+        <span class="btn-text"><i class="fas fa-fingerprint"></i> &nbsp;Search Aadhaar</span>
+      </button>
+    </div>
+
+    <!-- Recent -->
+    <div class="history-section" id="aadharHistory" style="display:none">
+      <p class="section-label"><i class="fas fa-history"></i> &nbsp;Recent Searches</p>
+      <div class="history-chips" id="aadharChips"></div>
+    </div>
+
+    <!-- Aadhar Result -->
+    <div class="result-card" id="aadharResult">
+      <div class="result-header">
+        <div class="result-status"></div>
+        <div class="result-header-text">Record Found ✓</div>
+        <div class="result-header-sub" id="aadharResultTime"></div>
+      </div>
+      <div class="result-body">
+        <div class="profile-row">
+          <div class="profile-avatar">🪪</div>
+          <div>
+            <div class="profile-name" id="ar-name">—</div>
+            <div class="profile-id" id="ar-aadhar">—</div>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-row">
+            <div class="info-icon pink"><i class="fas fa-user"></i></div>
+            <div class="info-content">
+              <div class="info-label">Full Name</div>
+              <div class="info-value" id="ar-r-name">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-r-name','Name')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon blue"><i class="fas fa-user-tie"></i></div>
+            <div class="info-content">
+              <div class="info-label">Father's Name</div>
+              <div class="info-value" id="ar-father">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-father','Father Name')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon pink"><i class="fas fa-mobile-alt"></i></div>
+            <div class="info-content">
+              <div class="info-label">Registered Mobile</div>
+              <div class="info-value mono" id="ar-mobile">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-mobile','Mobile')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon orange"><i class="fas fa-phone-alt"></i></div>
+            <div class="info-content">
+              <div class="info-label">Alternative Number</div>
+              <div class="info-value mono" id="ar-alt">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-alt','Alt Number')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon green"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-content">
+              <div class="info-label">Registered Address</div>
+              <div class="info-value" id="ar-address">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-address','Address')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon teal"><i class="fas fa-id-card"></i></div>
+            <div class="info-content">
+              <div class="info-label">Aadhaar Number</div>
+              <div class="info-value mono" id="ar-aadhar-num">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-aadhar-num','Aadhaar')"><i class="fas fa-copy"></i></button>
+          </div>
+          <div class="info-row">
+            <div class="info-icon red"><i class="fas fa-envelope"></i></div>
+            <div class="info-content">
+              <div class="info-label">Email Address</div>
+              <div class="info-value" id="ar-email">—</div>
+            </div>
+            <button class="copy-btn" onclick="copyText('ar-email','Email')"><i class="fas fa-copy"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div class="error-card" id="aadharError">
+      <div class="error-icon">❌</div>
+      <div class="error-title">No Record Found</div>
+      <div class="error-msg" id="aadharErrorMsg">No data found for this Aadhaar. Verify the number and try again.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Tips -->
+  <div class="tips-card">
+    <div class="tips-header">
+      <i class="fas fa-lightbulb"></i>
+      <span>Usage Tips</span>
+    </div>
+    <ul class="tips-list">
+      <li>Phone lookup requires exactly 10-digit Indian mobile number</li>
+      <li>Aadhaar lookup requires valid 12-digit Aadhaar number</li>
+      <li>Tap copy icon next to any field to copy value</li>
+      <li>Recent searches shown as chips for quick re-search</li>
+    </ul>
+  </div>
+
+  <!-- Developer Section -->
+  <p class="section-label"><i class="fas fa-code"></i> &nbsp;Developed By</p>
+  <div class="dev-section">
+    <div class="dev-row">
+      <div class="dev-avatar">🌷</div>
+      <div class="dev-info">
+        <div class="dev-name">Nishtha 🌷</div>
+        <div class="dev-role">Lead Developer & Designer</div>
+      </div>
+    </div>
+    <div class="dev-row" style="margin-bottom:0">
+      <div class="dev-avatar" style="background: linear-gradient(135deg,#0088cc,#006699)">🌷</div>
+      <div class="dev-info">
+        <div class="dev-name">Ranjay Yadav 🌷</div>
+        <div class="dev-role">Backend Developer</div>
+      </div>
+      <a href="https://t.me/ranjayranjan01" target="_blank" class="dev-tg">
+        <i class="fab fa-telegram"></i> @ranjayranjan01
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bottom Nav -->
+<div class="bottom-nav">
+  <div class="nav-item active" onclick="switchTab('phone'); setActiveNav(this)">
+    <div class="nav-icon"><i class="fas fa-mobile-alt"></i></div>
+    <div class="nav-label">Phone</div>
+  </div>
+  <div class="nav-item" onclick="switchTab('aadhar'); setActiveNav(this)">
+    <div class="nav-icon"><i class="fas fa-id-card"></i></div>
+    <div class="nav-label">Aadhaar</div>
+  </div>
+  <div class="nav-item" onclick="scrollToDev(); setActiveNav(this)">
+    <div class="nav-icon"><i class="fas fa-code"></i></div>
+    <div class="nav-label">Dev</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// API calls go through Vercel serverless proxy (avoids CORS)
+const API_BASE = '/api';
+
+let searchCount = 0, successCount = 0;
+let phoneHistory = [], aadharHistory = [];
+
+// Time
+function updateTime() {
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes();
+  document.getElementById('statusTime').textContent =
+    (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+}
+updateTime();
+setInterval(updateTime, 10000);
+
+// Floating Tulips
+function createTulips() {
+  const container = document.getElementById('tulipContainer');
+  const emojis = ['🌷', '🌸', '💐', '🌺', '🌹'];
+  for (let i = 0; i < 12; i++) {
+    const t = document.createElement('span');
+    t.className = 'tulip-particle';
+    t.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    t.style.left = Math.random() * 100 + '%';
+    t.style.animationDelay = Math.random() * 8 + 's';
+    t.style.animationDuration = (6 + Math.random() * 6) + 's';
+    t.style.fontSize = (12 + Math.random() * 14) + 'px';
+    container.appendChild(t);
+  }
+}
+createTulips();
+
+// Tab Switching
+function switchTab(tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + tab).classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function setActiveNav(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function scrollToDev() {
+  document.querySelector('.dev-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Input helpers
+function isNumber(e) {
+  return e.key >= '0' && e.key <= '9';
+}
+function updateCounter(el, counterId, max) {
+  const val = el.value.replace(/\D/g, '');
+  el.value = val;
+  document.getElementById(counterId).textContent = val.length + '/' + max;
+}
+
+function formatAadhar(el) {
+  // just digits, no formatting in field
+}
+
+// Toast
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// Copy
+function copyText(id, label) {
+  const val = document.getElementById(id).textContent;
+  if (!val || val === '—' || val === 'N/A') { showToast('Nothing to copy'); return; }
+  navigator.clipboard.writeText(val).then(() => showToast('✓ ' + label + ' copied!'));
+}
+
+// Format value
+function fv(val) {
+  if (!val || val.toString().trim() === '') return 'N/A';
+  return val.toString().trim();
+}
+
+// Update stats
+function updateStats() {
+  document.getElementById('searchCount').textContent = searchCount;
+  document.getElementById('successCount').textContent = successCount;
+}
+
+// History chips
+function addHistory(type, value) {
+  const arr = type === 'phone' ? phoneHistory : aadharHistory;
+  if (!arr.includes(value)) {
+    arr.unshift(value);
+    if (arr.length > 5) arr.pop();
+  }
+  renderHistory(type);
+}
+
+function renderHistory(type) {
+  const arr = type === 'phone' ? phoneHistory : aadharHistory;
+  const container = document.getElementById(type + 'History');
+  const chips = document.getElementById(type + 'Chips');
+  if (arr.length === 0) { container.style.display = 'none'; return; }
+  container.style.display = 'block';
+  chips.innerHTML = arr.map(v =>
+    `<div class="history-chip" onclick="fillAndSearch('${type}','${v}')"><i class="fas fa-history"></i>${v}</div>`
+  ).join('');
+}
+
+function fillAndSearch(type, val) {
+  if (type === 'phone') {
+    document.getElementById('phoneInput').value = val;
+    updateCounter(document.getElementById('phoneInput'), 'phoneCounter', 10);
+    searchPhone();
+  } else {
+    document.getElementById('aadharInput').value = val;
+    updateCounter(document.getElementById('aadharInput'), 'aadharCounter', 12);
+    searchAadhar();
+  }
+}
+
+// Loading state
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (loading) { btn.classList.add('loading'); btn.disabled = true; }
+  else { btn.classList.remove('loading'); btn.disabled = false; }
+}
+
+// ===== PHONE SEARCH =====
+async function searchPhone() {
+  const num = document.getElementById('phoneInput').value.trim();
+  if (num.length !== 10) { showToast('⚠ Enter valid 10-digit number'); return; }
+
+  document.getElementById('phoneResult').classList.remove('show');
+  document.getElementById('phoneError').classList.remove('show');
+  setLoading('phoneBtn', true);
+  searchCount++;
+  updateStats();
+
+  try {
+    const url = `${API_BASE}/phone/${num}`;
+    const res = await fetch(url);
+    const json = await res.json();
+
+    if (json.success && json.data && json.data.length > 0) {
+      const d = json.data[0];
+      successCount++;
+      updateStats();
+      addHistory('phone', num);
+
+      document.getElementById('pr-name').textContent = fv(d.name);
+      document.getElementById('pr-mobile').textContent = '📱 ' + fv(d.mobile);
+      document.getElementById('r-name').textContent = fv(d.name);
+      document.getElementById('r-father').textContent = fv(d.father_name);
+      document.getElementById('r-mobile').textContent = fv(d.mobile);
+      document.getElementById('r-alt').textContent = fv(d.alt_mobile);
+      document.getElementById('r-address').textContent = fv(d.address);
+      document.getElementById('r-circle').textContent = fv(d.circle);
+      document.getElementById('r-aadhar').textContent = fv(d.id_number);
+      document.getElementById('r-email').textContent = fv(d.email);
+      document.getElementById('phoneResultTime').textContent = new Date().toLocaleTimeString();
+
+      document.getElementById('phoneResult').classList.add('show');
+      document.getElementById('phoneResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      document.getElementById('phoneErrorMsg').textContent = 'No record found for ' + num;
+      document.getElementById('phoneError').classList.add('show');
+    }
+  } catch (e) {
+    document.getElementById('phoneErrorMsg').textContent = 'Server error: ' + (e.message || 'Unable to reach API. Ensure you are on Vercel or try again.');
+    document.getElementById('phoneError').classList.add('show');
+  } finally {
+    setLoading('phoneBtn', false);
+  }
+}
+
+// ===== AADHAR SEARCH =====
+async function searchAadhar() {
+  const num = document.getElementById('aadharInput').value.trim();
+  if (num.length !== 12) { showToast('⚠ Enter valid 12-digit Aadhaar'); return; }
+
+  document.getElementById('aadharResult').classList.remove('show');
+  document.getElementById('aadharError').classList.remove('show');
+  setLoading('aadharBtn', true);
+  searchCount++;
+  updateStats();
+
+  try {
+    const url = `${API_BASE}/aadhar/${num}`;
+    const res = await fetch(url);
+    const json = await res.json();
+
+    if (json.success && json.data && json.data.length > 0) {
+      const d = json.data[0];
+      successCount++;
+      updateStats();
+      addHistory('aadhar', num);
+
+      document.getElementById('ar-name').textContent = fv(d.name);
+      document.getElementById('ar-aadhar').textContent = '🪪 ' + fv(d.id_number);
+      document.getElementById('ar-r-name').textContent = fv(d.name);
+      document.getElementById('ar-father').textContent = fv(d.father_name);
+      document.getElementById('ar-mobile').textContent = fv(d.mobile);
+      document.getElementById('ar-alt').textContent = fv(d.alt_mobile);
+      document.getElementById('ar-address').textContent = fv(d.address);
+      document.getElementById('ar-aadhar-num').textContent = fv(d.id_number);
+      document.getElementById('ar-email').textContent = fv(d.email);
+      document.getElementById('aadharResultTime').textContent = new Date().toLocaleTimeString();
+
+      document.getElementById('aadharResult').classList.add('show');
+      document.getElementById('aadharResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      document.getElementById('aadharErrorMsg').textContent = 'No record found for Aadhaar ' + num;
+      document.getElementById('aadharError').classList.add('show');
+    }
+  } catch (e) {
+    document.getElementById('aadharErrorMsg').textContent = 'Server error: ' + (e.message || 'Unable to reach API. Ensure you are on Vercel or try again.');
+    document.getElementById('aadharError').classList.add('show');
+  } finally {
+    setLoading('aadharBtn', false);
+  }
+}
+</script>
+</body>
+</html>
